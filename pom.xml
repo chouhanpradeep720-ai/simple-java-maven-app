@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany.app</groupId>
-  <artifactId>my-app</artifactId>
+  <artifactId>my-jar</artifactId>
   <packaging>jar</packaging>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>2.2.4-SNAPSHOT</version>
   <name>my-app</name>
   <url>https://maven.apache.org</url>
   <dependencies>
@@ -26,7 +26,7 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.14.1</version>
           <configuration>
-            <release>27</release>
+            <release>21</release>
           </configuration>
         </plugin>
       </plugins>
@@ -69,7 +69,28 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+    </plugin>
+   
+    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.1.1</version>
+    </plugin>
+
+    <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-deploy-plugin</artifactId>
+     </plugin>
+
     </plugins>
+
   </build>
+
+  <distributionManagement>
+     <snapshotRepository>
+	<id>nexus-snapshots</id>
+	<url>http://172.17.0.1:8080/repository/maven-snapshots/</url>
+     </snapshotRepository>
+ </distributionManagement>
+
 </project>
