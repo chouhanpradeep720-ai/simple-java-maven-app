@@ -17,6 +17,17 @@ pipeline {
                 echo 'deploy this project'
             }
           }
-    }
+    }  
+    post {
+        always {
+            echo "run in ALL CONDITION!!!
+        }
+        success {
+            echon "this job is SUCCESS!!"
+ }
+        failure {
+            echo "this job is FAIL!!!"
+        }
+ }
 }
 
