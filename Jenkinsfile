@@ -25,7 +25,7 @@ pipeline {
         stage('deploy') {
             input(
                 message: "Select the ENV"
-                ok: 'done'
+                 echo 'done'
                 parameters[
                     choice(name: 'ENV', choices: ['DEV', 'PROD', 'TEST'], description: '' )
                 ]                
