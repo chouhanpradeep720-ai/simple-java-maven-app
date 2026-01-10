@@ -24,7 +24,7 @@ pipeline {
             }
         stage('deploy') {
             input{
-                massages "select the env"
+                messages "select the env"
                 ok "done"
                 parameters{
                     choice(name: 'ENV', choices: ['1.1.0', '1.1.2', '1.2.0'], description: '' )
