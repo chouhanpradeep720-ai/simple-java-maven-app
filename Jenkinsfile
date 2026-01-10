@@ -18,6 +18,9 @@ pipeline {
                     params.executeTests
                 }
             }
+            steps {
+                echo 'testing this project'
+            }
             }
         stage('deploy') {
             steps {
