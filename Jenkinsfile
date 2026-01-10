@@ -23,14 +23,13 @@ pipeline {
             }
             }
         stage('deploy') {
-            input{
+            input(
                 messages "select the ENV"
                 ok "done"
-                parameters{
+                parameters[
                     choice(name: 'ENV', choices: ['DEV', 'PROD', 'TEST'], description: '' )
-                }
-                
-            }
+                ]                
+            )
             steps {
                 echo 'deploying this project'
                 echo "deploying version ${params.VERSION}"
