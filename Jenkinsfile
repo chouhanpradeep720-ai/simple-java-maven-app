@@ -12,14 +12,14 @@ pipeline {
                 echo 'build this project'
             }
         }
-          stage('test') {
+        stage('test') {
             when {
                 expression {
                     params.excuteTests
                 }
             }
             }
-              stage('deploy') {
+        stage('deploy') {
             steps {
                 echo 'deploying this project'
                 echo "deploying version ${prams.VERSION}"
