@@ -31,7 +31,7 @@ pipeline {
                     echo "Deploying this project"
                     echo "Deploying version ${params.VERSION}"
                     echo "Deploying to ${ONE}"
-                    echo "Deploying to ${TWO}"
+                    echo "Deploying to ${ONE}"
                     }
                 }
                 
