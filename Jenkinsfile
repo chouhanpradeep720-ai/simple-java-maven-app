@@ -1,42 +1,33 @@
 pipeline {
     agent any
-
-    parameters {
-        choice(name: 'VERSION', choices: ['1.1.0', '1.1.2', '1.2.0'], description: '')
-        booleanParam(name: 'executeTests', defaultValue: true, description: '')
+    tool {
+        maven 'maven-3.9'
     }
-
     stages {
-
-        stage("build") {
+        stage("build JAR") {
             steps {
                 echo 'building this project'
+                sh 'mvn package'
             }
         }
-
-        stage("test") {
-            when {
-                expression { params.executeTests }
-            }
+        stage("build image") {
             steps {
-                echo 'testing this project'
-            }
-        }
-
-        stage("deploy") {
-           
-            steps {
-                script {
-                   env.ONE = input message: "Select the environment to deploy to", ok: "Done", parameters: [choice(name: 'ONE', choices: ['staging', 'dev', 'prod'], description: ''), choice(name: 'TWO', choices: ['staging', 'dev', 'prod'], description: '')]
-                    echo "Deploying this project"
-                    echo "Deploying version ${params.VERSION}"
-                    echo "Deploying to ${ONE}"
-                    echo "Deploying to ${ONE}"
-                    }
+                echo 'building this images'
+                withcredentials([usernamepassword(credentialsID: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                    sh 'docker build -t pradeepchouhan115/docker.repo:java-maven-o.1 .'
+                    sh 'echo "$PASSWORD" | docker login -u $USER --password-stdin'
+                    sh 'docker push pradeepchouhan115/docker.repo:java-maven-o.1'
                 }
-                
-                
-                
             }
         }
+              
+        stage('deploy') {
+        
+            steps {
+                echo 'deploying this project'
+                echo "deploying version ${params.VERSION}"
+           }
+          }
+          }
+
     }
