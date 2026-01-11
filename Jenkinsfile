@@ -24,19 +24,16 @@ pipeline {
         }
 
         stage("deploy") {
-            input {
-                message "Select the environment to deploy to"
-                ok "Done"
-                parameters {
-                    choice(name: 'ONE', choices: ['staging', 'dev', 'prod'], description: '')
-                    choice(name: 'TWO', choices: ['staging', 'dev', 'prod'], description: '')
-                }
-            }
+           
             steps {
-                echo "Deploying this project"
-                echo "Deploying version ${params.VERSION}"
-                echo "Deploying to ${ONE}"
-                echo "Deploying to ${TWO}"
+                script {
+                   env.ONE input message: "Select the environment to deploy to", ok "DONE", parameters: [choice(name: 'ONE', choices: ['staging', 'dev', 'prod'], description: '')]
+                    echo "Deploying this project"
+                    echo "Deploying version ${params.VERSION}"
+                    echo "Deploying to ${ONE}"
+                    }
+                }
+                
                 
                 
             }
