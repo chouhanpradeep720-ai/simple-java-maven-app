@@ -1,63 +1,41 @@
 pipeline {
     agent any
+
     parameters {
-        choice(name: 'VERSION', choices: ['1.1.0', '1.1.2', '1.2.0'], description: '' )
-     booleanParam(name: 'executeTests', defaultValue: true, description: '')
+        choice(name: 'VERSION', choices: ['1.1.0', '1.1.2', '1.2.0'], description: '')
+        booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
+
     stages {
+
         stage("build") {
             steps {
-                  echo 'build this project'
-            } 
+                echo 'building this project'
+            }
         }
+
         stage("test") {
             when {
-                 expression {
-                     params.executeTests
-                 }
+                expression { params.executeTests }
+            }
+            steps {
+                echo 'testing this project'
             }
         }
-            steps {
-                 echo 'testing this project'
-            }
+
         stage("deploy") {
-            input{
+            input {
                 message "Select the environment to deploy to"
                 ok "Done"
-                parameters{
-                    choice(name: 'ENV', choices: ['staging', 'dev', 'prod'], description: '' )
+                parameters {
+                    choice(name: 'ENV', choices: ['staging', 'dev', 'prod'], description: '')
                 }
             }
-
-
             steps {
-                echo 'deploying this project'
-                echo "deploying version ${params.VERSION}"
+                echo "Deploying this project"
+                echo "Deploying version ${params.VERSION}"
                 echo "Deploying to ${ENV}"
-
             }
-        }    
-
-
-
-
-
-
-
-
-
-
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
 }
-    
