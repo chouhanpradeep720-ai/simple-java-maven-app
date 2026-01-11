@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script{
                       echo "building this project"
-                      sh "mvn package"
+                      sh 'mvn package'
                 }
               
             }
@@ -18,9 +18,9 @@ pipeline {
                 script {
                     echo "building this images"
                     withCredentials([usernamepassword(credentialsID: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-                    sh "docker build -t pradeepchouhan115/docker.repo:java-maven-0.1 ."
-                    sh "echo "$PASSWORD" | docker login -u "$USER" --password-stdin"
-                    sh "docker push pradeepchouhan115/docker.repo:java-maven-0.1"
+                    sh 'docker build -t pradeepchouhan115/docker.repo:java-maven-0.1 .'
+                    sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
+                    sh 'docker push pradeepchouhan115/docker.repo:java-maven-0.1'
                 }
                 }
             }
