@@ -5,12 +5,12 @@ pipeline {
      booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
     stages {
-        stage('build') {
+        stage("build") {
             steps {
                   echo 'build this project'
             } 
         }
-        stage('test') {
+        stage("test") {
             when {
                  expression {
                      params.executeTests
@@ -20,7 +20,7 @@ pipeline {
             steps {
                  echo 'testing this project'
             }
-        stage('deploy') {
+        stage("deploy") {
             input{
                 message "Select the environment to deploy to"
                 ok "Done"
