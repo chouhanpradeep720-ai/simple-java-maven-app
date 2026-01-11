@@ -28,13 +28,17 @@ pipeline {
                 message "Select the environment to deploy to"
                 ok "Done"
                 parameters {
-                    choice(name: 'ENV', choices: ['staging', 'dev', 'prod'], description: '')
+                    choice(name: 'ONE', choices: ['staging', 'dev', 'prod'], description: '')
+                    choice(name: 'TWO', choices: ['staging', 'dev', 'prod'], description: '')
                 }
             }
             steps {
                 echo "Deploying this project"
                 echo "Deploying version ${params.VERSION}"
-                echo "Deploying to ${ENV}"
+                echo "Deploying to ${ONE}"
+                echo "Deploying to ${TWO}"
+                
+                
             }
         }
     }
