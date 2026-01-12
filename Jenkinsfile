@@ -3,7 +3,7 @@ pipeline {
     tools {
         maven 'maven-3.9'
     }
-    satges {
+    stages {
         stage("build jar") {
             steps {
                 script {
