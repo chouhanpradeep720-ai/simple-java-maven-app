@@ -3,8 +3,8 @@ pipeline {
     tools {
         maven 'maven-3.9'
     }
-    satges  {
-        stage ("build jar") {
+    satges {
+        stage("build jar") {
             steps {
                 script {
                     echo "building this project"
@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-         stage ("build image") {
+         stage("build image") {
             steps {
                 script {
                     echo "buil a image"
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-         stage ("deploy") {
+         stage("deploy") {
             steps {
                 script {
                     echo "deploy this project"
