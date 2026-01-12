@@ -15,8 +15,14 @@ pipeline {
          stage("build image") {
             steps {
                 script {
+                        
                     echo "buil a image"
-                    sh 'docker build -t java-maven:0.1 .'
+                    withCredentials([usernamePassword(credentialsID: 'docker-credentials', usernameVariable: 'USER', passwordVariable: ''PASS)]) {
+                      sh 'docker build -t pradeepchouhan115/docker.repo:java-amven-0.1 .'
+                      sh 'echo $PASS | docker login -u $USER --password-stdin'
+                      sh 'docker push pradeepchouhan115/docker.repo:java-amven-0.1'
+                    }
+                
                 }
             }
         }
