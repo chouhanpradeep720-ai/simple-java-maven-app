@@ -3,15 +3,20 @@
     
     }
     stages {
-        stage("build jar") {
+        stage("test") {
             steps {
                 script {
-                    echo "building this project"
+                    echo "testing this project"
                     
                 }
             }
         }
          stage("build image") {
+          when {
+           expression {
+            BRANCH_NAME == 'jenkins-jobs'
+           }
+          }
             steps {
                 script {
                      
@@ -28,4 +33,4 @@
             }
         }
     }
-}
+
