@@ -3,39 +3,29 @@ pipeline {
     tools {
         maven 'maven-3.9'
     }
-    stages {
-        stage("build JAR") {
-            steps {
-                script{
-                      echo "building this project"
-                      sh 'mvn package'
-                }
-              
-            }
-        }
-        stage("build image") {
+    satges ("build jar") {
+        stage {
             steps {
                 script {
-                    echo "building this images"
-                    withCredentials([[$class: 'UsernamePasswordMoultiBinding'(credentialsid: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]]) {
-                    sh 'docker build -t pradeepchouhan115/docker.repo:java-maven-0.1 .'
-                    sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
-                    sh 'docker push pradeepchouhan115/docker.repo:java-maven-0.1'
-                }
+                    echo "building this project"
+                    sh 'mvn package'
                 }
             }
         }
-              
-        stage("deploy") {
+         stage {
             steps {
                 script {
-                    echo "deploying this project"
+                    echo "buil a image"
+                    sh 'docker build -t java-maven:0.1 .'
                 }
             }
-        
-           
-          }
-          }
-
+        }
+         stage {
+            steps {
+                script {
+                    echo "deploy this project"
+                }
+            }
+        }
     }
-    
+}
