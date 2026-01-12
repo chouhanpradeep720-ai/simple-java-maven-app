@@ -26,11 +26,11 @@ pipeline {
                         )
                     ]) {
 
-                        sh "docker build -t pradeepchouhan115/docker-repo-java-maven:0.1 ."
+                        sh "docker build -t pradeepchouhan115/docker-repo:java-maven-0.1 ."
 
                         sh "echo \$PASS | docker login -u \$USER --password-stdin"
 
-                        sh "docker push pradeepchouhan115/docker-repo-java-maven:0.1"
+                        sh "docker push pradeepchouhan115/docker-repo:java-maven-0.1"
                     }
                 }
             }
