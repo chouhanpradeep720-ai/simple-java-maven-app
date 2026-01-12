@@ -17,7 +17,7 @@ pipeline {
                 script {
                     echo "building a image...."
                     withCredentials([
-                        usernamePassword(credentialsID: 'docker-credentials',
+                        usernamePassword(credentialsId: 'docker-credentials',
                                          usernameVariable: 'USER',
                                          passwordVariable: 'PASS')]) {
                         sh "docker build -t pradeepchouhan115/docker.repo:jma-2.0 ."
