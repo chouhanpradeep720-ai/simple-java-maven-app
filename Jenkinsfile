@@ -23,7 +23,7 @@ pipeline {
         stage('build Image') {
             steps {
                 script {
-                  buildImage()
+                  buildImage 'pradeepchouhan115/docker.repo:jma-2.4'
                 }
             }
         }
