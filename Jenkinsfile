@@ -1,7 +1,7 @@
  pipeline {
     agent any
     stages {
-        stage("test") {
+        stage("build jar") {
             steps {
                 script {
                     echo "testing this project"
@@ -10,15 +10,12 @@
             }
         }
          stage("build image") {
-          when {
-           expression {
-            BRANCH_NAME == 'jenkins-jobs'
-           }
-          }
+         
             steps {
                 script {
                      
                     echo "buil a image"
+               
                           
                 }
             }
