@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                    gv = load "script.groovy"
-                   echo "build"
+                   echo "build in image"
                 }
             }
         }
